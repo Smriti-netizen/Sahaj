@@ -1,4 +1,6 @@
-const HF_MODEL = process.env.HF_MODEL || "unsloth/gemma-4-E2B-it";
+const HF_MODEL = process.env.HF_MODEL || "google/gemma-2-2b-it";
+const HF_CHAT_URL = "https://router.huggingface.co/v1/chat/completions";
+const HF_INFERENCE_URL = "https://router.huggingface.co/hf-inference/models";
 const SYSTEM_PROMPT = `You are Sahaj, an AI assistant for Indian citizens.
 Your job: understand the user's input and extract structured information.
 Always respond with valid JSON containing:
@@ -148,11 +150,73 @@ function matchSchemes(profile) {
 
 function matchLegal(cat, details) {
   const c = norm(cat);
-  return legalRights.find(
-    (l) =>
-      norm(l.category) === c ||
-      (l.issues || []).some((i) => norm(details?.issue).includes(norm(i)) || norm(i).includes(norm(details?.issue)))
-  );
+  const issue = norm(details?.issue);
+  if (c) {
+    const byCat = legalRights.find((l) => norm(l.category) === c);
+    if (byCat) return byCat;
+  }
+  if (issue) {
+    return legalRights.find((l) =>
+      (l.issues || []).some((i) => issue === norm(i) || issue.includes(norm(i)) || norm(i).includes(issue))
+    );
+  }
+  return undefined;
+}
+
+function classifyFromMessage(message) {
+  const m = message.toLowerCase().trim();
+  if (/\b(rape|raped|balatkar|molest)\b/.test(m) || m.includes("rape hua")) {
+    return { intent: "legal_aid", category: "women", details: { issue: "sexual_assault" } };
+  }
+  if (
+    m.includes("landlord") ||
+    m.includes("kiraya") ||
+    m.includes("rent") ||
+    m.includes("evict") ||
+    m.includes("ghar khali") ||
+    (m.includes("agreement") && (m.includes("ghar") || m.includes("rent")))
+  ) {
+    return {
+      intent: "legal_aid",
+      category: "property",
+      details: {
+        issue: m.includes("bina notice") || m.includes("without notice") ? "eviction_without_notice" : "eviction_notice",
+      },
+    };
+  }
+  if (m.includes("amazon") || m.includes("flipkart") || m.includes("refund") || m.includes("defective")) {
+    return {
+      intent: "legal_aid",
+      category: "consumer",
+      details: { issue: m.includes("refund") ? "refund_denied" : "defective_product" },
+    };
+  }
+  if (m.includes("salary") || m.includes("wage") || m.includes("boss") || m.includes("nikaal")) {
+    return {
+      intent: "legal_aid",
+      category: "labor",
+      details: { issue: m.includes("salary") || m.includes("wage") ? "unpaid_wages" : "wrongful_termination" },
+    };
+  }
+  if (m.includes("upi") || m.includes("cyber") || m.includes("fraud")) {
+    return { intent: "legal_aid", category: "cyber", details: { issue: "upi_fraud" } };
+  }
+  if (m.includes("kisan") || m.includes("farmer") || m.includes("kaam") || m.includes("scheme") || m.includes("naukri")) {
+    return {
+      intent: "scheme_discovery",
+      profile: {
+        occupation: m.includes("farmer") || m.includes("kisan") ? "farmer" : "unemployed",
+        looking_for: "employment",
+      },
+    };
+  }
+  return null;
+}
+
+function refineExtraction(message, data) {
+  const fromMsg = classifyFromMessage(message);
+  if (fromMsg) return { ...data, ...fromMsg };
+  return data;
 }
 
 function matchExtraction(data) {
@@ -177,94 +241,41 @@ function matchExtraction(data) {
   };
 }
 
-function demoExtraction(fullText) {
-  const m = fullText.toLowerCase();
-  const sexualAssault =
-    /\b(rape|raped|balatkar|balatkari|molest|chhedchhad|sexual\s*assault|molestation)\b/.test(m) ||
-    m.includes("mera rape") ||
-    m.includes("rape hua");
-  if (sexualAssault) {
-    return {
-      intent: "legal_aid",
-      category: "women",
-      details: { issue: "sexual_assault" },
-      empathy_hindi:
-        "Main samajh sakti hoon — yeh bahut bhari baat hai. Aap akeli nahi hain. Neeche turant madad aur kanuni kadam diye gaye hain. Agar abhi khatra ho to 112 par call karein.",
-    };
-  }
-  if (
-    m.includes("amazon") ||
-    m.includes("refund") ||
-    m.includes("landlord") ||
-    m.includes("salary") ||
-    m.includes("malik") ||
-    m.includes("legal issue") ||
-    m.includes("legal hai") ||
-    m.includes("kanuni")
-  ) {
-    const clarifiedLegal = m.includes("legal issue") || m.includes("legal hai") || m.includes("kanuni");
-    if (clarifiedLegal && !m.includes("amazon") && !m.includes("refund") && !m.includes("landlord")) {
-      return {
-        intent: "legal_aid",
-        category: "general",
-        details: { issue: "general_legal" },
-        follow_up_hindi:
-          "Theek hai — legal madad ke liye hoon. Thoda detail batayein: salary, rent, consumer, ya koi aur problem?",
-      };
+function demoExtraction(message) {
+  return (
+    classifyFromMessage(message) ?? {
+      intent: "general_query",
+      follow_up_hindi:
+        "Namaste — main Sahaj hoon. Aapko sarkari scheme chahiye ya kisi legal problem mein madad? Hindi ya English mein apni situation likhiye.",
     }
-    return {
-      intent: "legal_aid",
-      category: m.includes("amazon") || m.includes("refund") ? "consumer" : m.includes("landlord") ? "property" : "labor",
-      details: { issue: m.includes("amazon") ? "defective_product" : "unpaid_wages" },
-    };
-  }
-  if (
-    m.includes("kisan") ||
-    m.includes("farmer") ||
-    m.includes("taxi") ||
-    m.includes("kaam") ||
-    m.includes("dilway") ||
-    m.includes("rozgar") ||
-    m.includes("job") ||
-    m.includes("naukri")
-  ) {
-    return {
-      intent: "scheme_discovery",
-      profile: {
-        occupation: m.includes("taxi") ? "taxi_driver" : m.includes("farmer") || m.includes("kisan") ? "farmer" : "unemployed",
-        looking_for: "employment",
-      },
-    };
-  }
-  return {
-    intent: "general_query",
-    follow_up_hindi:
-      "Namaste — main Sahaj hoon. Aapko sarkari scheme chahiye ya kisi legal problem mein madad? Hindi ya English mein apni situation likhiye.",
-  };
+  );
 }
 
-async function callHF(prompt) {
-  const token = process.env.HF_TOKEN;
+async function callHF(userText) {
+  const token = process.env.HF_TOKEN?.trim();
   if (!token) return null;
   try {
-    const res = await fetch(`https://api-inference.huggingface.co/models/${HF_MODEL}`, {
+    const res = await fetch("https://router.huggingface.co/v1/chat/completions", {
       method: "POST",
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        inputs: prompt,
-        parameters: { max_new_tokens: 400, temperature: 0.15, return_full_text: false },
-        options: { wait_for_model: true },
+        model: HF_MODEL,
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          { role: "user", content: userText },
+        ],
+        max_tokens: 400,
+        temperature: 0.15,
       }),
     });
     if (!res.ok) {
-      console.error("HF inference failed:", res.status, await res.text().catch(() => ""));
+      console.error("HF failed:", res.status, await res.text().catch(() => ""));
       return null;
     }
     const data = await res.json();
-    if (Array.isArray(data) && data[0]?.generated_text) return data[0].generated_text;
-    if (data?.generated_text) return data.generated_text;
-    return null;
-  } catch {
+    return data?.choices?.[0]?.message?.content || null;
+  } catch (e) {
+    console.error("HF error:", e);
     return null;
   }
 }
@@ -283,18 +294,19 @@ export default async function handler(req, res) {
     if (!message?.trim()) return res.status(400).json({ error: "message required" });
 
     const contextText = (body.context || message).trim();
-    const prompt = buildPrompt(contextText);
-    let raw = await callHF(prompt);
+    const currentMsg = message.trim();
+    let raw = await callHF(contextText);
     let source = "hf";
     if (!raw) {
       source = "demo";
-      raw = JSON.stringify(demoExtraction(contextText));
+      raw = JSON.stringify(demoExtraction(currentMsg));
     }
     let extraction = extractFirstJson(raw);
     if (!extraction) {
       source = "demo";
-      extraction = demoExtraction(contextText);
+      extraction = demoExtraction(currentMsg);
     }
+    extraction = refineExtraction(currentMsg, extraction);
 
     return res.status(200).json({
       extraction,
@@ -305,8 +317,8 @@ export default async function handler(req, res) {
     console.error(e);
     const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
     const message = body.message || "";
-    const contextText = (body.context || message).trim();
-    const extraction = demoExtraction(contextText);
+    const currentMsg = (body.message || "").trim();
+    const extraction = refineExtraction(currentMsg, demoExtraction(currentMsg));
     return res.status(200).json({
       extraction,
       results: matchExtraction(extraction),
