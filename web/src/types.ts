@@ -28,6 +28,9 @@ export interface ChatResponse {
   extraction: Record<string, unknown>;
   results: MatchResult;
   source?: "hf" | "demo";
+  hf_hint?: string;
+  hf_called?: boolean;
+  token_on_server?: boolean;
 }
 
 export interface ChatMessage {

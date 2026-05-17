@@ -27,26 +27,26 @@ function matchSchemes(profile: Record<string, unknown>): Scheme[] {
     if (typeof e.max_land_acres === "number" && typeof profile.land_acres === "number") {
       ok = ok && (profile.land_acres as number) <= (e.max_land_acres as number);
     }
-    if (typeof e.age_min === "number" && typeof profile.age === "number") {
-      ok = ok && (profile.age as number) >= (e.age_min as number);
-    }
-    if (typeof e.age_max === "number" && typeof profile.age === "number") {
-      ok = ok && (profile.age as number) <= (e.age_max as number);
-    }
     if (ok && (e.occupation || e.income_category || e.looking_for || e.area || e.max_land_acres)) {
       hits.push(scheme);
     }
   }
-  return hits.length ? hits : (schemes as Scheme[]).slice(0, 3);
+  return hits;
 }
 
 function matchLegal(category: string, details: Record<string, unknown>): LegalRight | undefined {
   const cat = norm(category);
-  return (legalRights as LegalRight[]).find(
-    (l) =>
-      norm(l.category) === cat ||
-      l.issues.some((i) => norm(details.issue).includes(norm(i)) || norm(i).includes(norm(details.issue)))
-  );
+  const issue = norm(details.issue);
+  if (cat) {
+    const byCategory = (legalRights as LegalRight[]).find((l) => norm(l.category) === cat);
+    if (byCategory) return byCategory;
+  }
+  if (issue) {
+    return (legalRights as LegalRight[]).find((l) =>
+      l.issues.some((i) => issue === norm(i) || issue.includes(norm(i)) || norm(i).includes(issue))
+    );
+  }
+  return undefined;
 }
 
 export function matchExtraction(data: Record<string, unknown>): MatchResult {
@@ -71,8 +71,6 @@ export function matchExtraction(data: Record<string, unknown>): MatchResult {
 
   return {
     type: "general",
-    message:
-      (data.follow_up_hindi as string) ||
-      "कृपया बताएं: scheme dhundh rahe hain ya legal issue hai?",
+    message: (data.follow_up_hindi as string) || "कृपया बताएं: scheme dhundh rahe hain ya legal issue hai?",
   };
 }
