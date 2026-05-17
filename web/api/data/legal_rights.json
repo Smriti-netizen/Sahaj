@@ -1,0 +1,34 @@
+[
+  {
+    "category": "labor",
+    "title_hindi": "श्रम अधिकार",
+    "laws": ["Payment of Wages Act, 1936", "Industrial Disputes Act"],
+    "steps_hindi": [
+      "सभी documents इकट्ठा करें",
+      "Labour Commissioner के पास शिकायत",
+      "legal aid clinic से संपर्क"
+    ],
+    "portal_url": "https://labour.gov.in",
+    "issues": ["unpaid_wages", "wrongful_termination", "workplace_injury", "workplace_harassment"]
+  },
+  {
+    "category": "consumer",
+    "title_hindi": "उपभोक्ता अधिकार",
+    "laws": ["Consumer Protection Act, 2019"],
+    "steps_hindi": [
+      "बिल और order proof सेव करें",
+      "consumerhelpline.gov.in पर शिकायत",
+      "consumer forum में case"
+    ],
+    "portal_url": "https://consumerhelpline.gov.in",
+    "issues": ["defective_product", "refund_denied", "bank_fraud", "loan_misuse"]
+  },
+  {
+    "category": "property",
+    "title_hindi": "संपत्ति / किराया",
+    "laws": ["Rent control acts"],
+    "steps_hindi": ["agreement copy रखें", "legal notice", "civil court"],
+    "portal_url": "",
+    "issues": ["eviction_without_notice", "eviction_notice", "tenant_not_paying"]
+  }
+]

@@ -1,0 +1,223 @@
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem 1rem 7rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.logo {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--accent-2);
+  border: 1px solid var(--border);
+}
+
+.tagline {
+  margin: 0.4rem 0 0;
+  font-size: 1.05rem;
+}
+
+.sub {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.hint p {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.chip {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 0.35rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.84rem;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+}
+
+.bubble {
+  max-width: 100%;
+  padding: 0.7rem 0.9rem;
+  border-radius: 12px;
+}
+
+.bubble-user {
+  align-self: flex-end;
+  max-width: 88%;
+  background: var(--user-bg);
+  border-radius: 12px 12px 4px 12px;
+}
+
+.bubble-bot {
+  align-self: flex-start;
+  background: var(--bot-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px 12px 12px 4px;
+}
+
+.bubble-label {
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+.bubble-text {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-size: 0.84rem;
+  font-family: ui-monospace, "Cascadia Code", monospace;
+}
+
+.cards {
+  margin-top: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem;
+}
+
+.card h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+.card-meta {
+  margin: 0;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.card-desc {
+  margin: 0.45rem 0;
+  font-size: 0.85rem;
+}
+
+.card ol {
+  margin: 0.4rem 0 0;
+  padding-left: 1.15rem;
+  font-size: 0.84rem;
+}
+
+.card-link {
+  font-size: 0.84rem;
+}
+
+.status {
+  color: var(--muted);
+  font-style: italic;
+  font-size: 0.88rem;
+}
+
+.error {
+  color: #f87171;
+  font-size: 0.88rem;
+}
+
+.composer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 0.65rem 1rem;
+}
+
+.composer-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.composer textarea {
+  flex: 1;
+  resize: none;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  padding: 0.6rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.composer textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.send-btn {
+  align-self: flex-end;
+  padding: 0.6rem 1.15rem;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, var(--accent), #e07b20);
+  color: #111;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.send-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.footer-note {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 0.75rem;
+}

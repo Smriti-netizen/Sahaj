@@ -1,0 +1,74 @@
+[
+  {
+    "category": "labor",
+    "title_hindi": "श्रम अधिकार",
+    "laws": ["Payment of Wages Act, 1936", "Industrial Disputes Act"],
+    "steps_hindi": [
+      "सभी documents (salary slip, appointment letter) इकट्ठा करें",
+      "श्रम विभाग / Labour Commissioner के पास शिकायत दर्ज करें",
+      "कानूनी सलाह के लिए legal aid clinic से संपर्क करें"
+    ],
+    "portal_url": "https://labour.gov.in",
+    "issues": ["unpaid_wages", "wrongful_termination", "workplace_injury", "workplace_harassment", "maternity_leave_denied", "pf_withdrawal_stuck"]
+  },
+  {
+    "category": "consumer",
+    "title_hindi": "उपभोक्ता अधिकार",
+    "laws": ["Consumer Protection Act, 2019"],
+    "steps_hindi": [
+      "बिल, order proof, photos सेव करें",
+      "consumerhelpline.gov.in पर शिकायत दर्ज करें",
+      "जरूरत हो तो consumer forum में case"
+    ],
+    "portal_url": "https://consumerhelpline.gov.in",
+    "issues": ["defective_product", "counterfeit_product", "refund_denied", "insurance_claim_rejected", "service_not_provided", "bank_fraud", "loan_misuse"]
+  },
+  {
+    "category": "women",
+    "title_hindi": "महिला अधिकार",
+    "laws": ["Protection of Women from Domestic Violence Act"],
+    "steps_hindi": [
+      "Women helpline 181 या 1091 पर कॉल करें",
+      "पास की police station से संपर्क",
+      "medical report और सबूत सुरक्षित रखें"
+    ],
+    "portal_url": "https://wcd.nic.in",
+    "issues": ["domestic_violence", "dowry_demand", "sexual_harassment_workplace", "divorce_maintenance"]
+  },
+  {
+    "category": "property",
+    "title_hindi": "संपत्ति / किराया",
+    "laws": ["Rent control acts (state)"],
+    "steps_hindi": [
+      "किरायानामा / agreement की copy रखें",
+      "legal notice के जरिए बातचीत",
+      "civil court / rent authority में case"
+    ],
+    "portal_url": "",
+    "issues": ["eviction_without_notice", "eviction_notice", "tenant_not_paying", "encroachment", "inheritance_dispute"]
+  },
+  {
+    "category": "cyber",
+    "title_hindi": "साइबर अपराध",
+    "laws": ["IT Act"],
+    "steps_hindi": [
+      "cybercrime.gov.in पर complaint",
+      "bank ko turant inform karke account block",
+      "screenshots save rakhein"
+    ],
+    "portal_url": "https://cybercrime.gov.in",
+    "issues": ["upi_fraud", "fake_profile", "loan_app_harassment", "identity_theft"]
+  },
+  {
+    "category": "rti",
+    "title_hindi": "RTI — सूचना का अधिकार",
+    "laws": ["Right to Information Act, 2005"],
+    "steps_hindi": [
+      "सही department identify करें",
+      "RTI application submit करें",
+      "30 days में जवाब का हक"
+    ],
+    "portal_url": "https://rtionline.gov.in",
+    "issues": ["delayed_government_service", "unfulfilled_promise", "unauthorized_construction"]
+  }
+]

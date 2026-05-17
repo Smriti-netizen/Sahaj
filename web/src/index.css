@@ -1,0 +1,41 @@
+:root {
+  --bg: #0c1017;
+  --surface: #151c28;
+  --surface-2: #1e2838;
+  --accent: #ff9933;
+  --accent-2: #2d9f5f;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --border: #2d3a4f;
+  --user-bg: #1a3358;
+  --bot-bg: #1a2332;
+  font-family: "DM Sans", system-ui, sans-serif;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 70% 45% at 50% -15%, rgba(45, 159, 95, 0.12), transparent),
+    radial-gradient(ellipse 50% 30% at 100% 0%, rgba(255, 153, 51, 0.1), transparent),
+    var(--bg);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+}
+
+a {
+  color: var(--accent);
+}
