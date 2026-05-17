@@ -74,6 +74,20 @@ const legalRights = [
     portal_url: "",
     issues: ["eviction_without_notice", "eviction_notice", "tenant_not_paying"],
   },
+  {
+    category: "women",
+    title_hindi: "महिला सुरक्षा और कानूनी अधिकार",
+    laws: ["Bharatiya Nyaya Sanhita (sexual offences)", "Protection of Women from Domestic Violence Act, 2005"],
+    steps_hindi: [
+      "Turant 112 / 100 par call karein agar abhi khatra ho",
+      "Women helpline 181 ya 1091 — 24×7 madad",
+      "Nearest police station par FIR darj karwayein",
+      "Government hospital mein medical examination",
+      "NALSA / District Legal Services se free lawyer",
+    ],
+    portal_url: "https://wcd.nic.in",
+    issues: ["sexual_assault", "rape", "molestation", "domestic_violence", "dowry_demand"],
+  },
 ];
 
 function buildPrompt(msg) {
@@ -163,16 +177,57 @@ function matchExtraction(data) {
   };
 }
 
-function demoExtraction(message) {
-  const m = message.toLowerCase();
-  if (m.includes("amazon") || m.includes("refund") || m.includes("landlord") || m.includes("salary") || m.includes("malik")) {
+function demoExtraction(fullText) {
+  const m = fullText.toLowerCase();
+  const sexualAssault =
+    /\b(rape|raped|balatkar|balatkari|molest|chhedchhad|sexual\s*assault|molestation)\b/.test(m) ||
+    m.includes("mera rape") ||
+    m.includes("rape hua");
+  if (sexualAssault) {
     return {
       intent: "legal_aid",
-      category: m.includes("amazon") ? "consumer" : m.includes("landlord") ? "property" : "labor",
+      category: "women",
+      details: { issue: "sexual_assault" },
+      empathy_hindi:
+        "Main samajh sakti hoon — yeh bahut bhari baat hai. Aap akeli nahi hain. Neeche turant madad aur kanuni kadam diye gaye hain. Agar abhi khatra ho to 112 par call karein.",
+    };
+  }
+  if (
+    m.includes("amazon") ||
+    m.includes("refund") ||
+    m.includes("landlord") ||
+    m.includes("salary") ||
+    m.includes("malik") ||
+    m.includes("legal issue") ||
+    m.includes("legal hai") ||
+    m.includes("kanuni")
+  ) {
+    const clarifiedLegal = m.includes("legal issue") || m.includes("legal hai") || m.includes("kanuni");
+    if (clarifiedLegal && !m.includes("amazon") && !m.includes("refund") && !m.includes("landlord")) {
+      return {
+        intent: "legal_aid",
+        category: "general",
+        details: { issue: "general_legal" },
+        follow_up_hindi:
+          "Theek hai — legal madad ke liye hoon. Thoda detail batayein: salary, rent, consumer, ya koi aur problem?",
+      };
+    }
+    return {
+      intent: "legal_aid",
+      category: m.includes("amazon") || m.includes("refund") ? "consumer" : m.includes("landlord") ? "property" : "labor",
       details: { issue: m.includes("amazon") ? "defective_product" : "unpaid_wages" },
     };
   }
-  if (m.includes("kisan") || m.includes("farmer") || m.includes("taxi") || m.includes("kaam") || m.includes("dilway") || m.includes("rozgar") || m.includes("job") || m.includes("naukri")) {
+  if (
+    m.includes("kisan") ||
+    m.includes("farmer") ||
+    m.includes("taxi") ||
+    m.includes("kaam") ||
+    m.includes("dilway") ||
+    m.includes("rozgar") ||
+    m.includes("job") ||
+    m.includes("naukri")
+  ) {
     return {
       intent: "scheme_discovery",
       profile: {
@@ -183,7 +238,8 @@ function demoExtraction(message) {
   }
   return {
     intent: "general_query",
-    follow_up_hindi: "Kya problem hai? Scheme dhundh rahe ho ya legal issue? Detail batayein.",
+    follow_up_hindi:
+      "Namaste — main Sahaj hoon. Aapko sarkari scheme chahiye ya kisi legal problem mein madad? Hindi ya English mein apni situation likhiye.",
   };
 }
 
@@ -222,17 +278,18 @@ export default async function handler(req, res) {
     const message = body.message;
     if (!message?.trim()) return res.status(400).json({ error: "message required" });
 
-    const prompt = buildPrompt(message.trim());
+    const contextText = (body.context || message).trim();
+    const prompt = buildPrompt(contextText);
     let raw = await callHF(prompt);
     let source = "hf";
     if (!raw) {
       source = "demo";
-      raw = JSON.stringify(demoExtraction(message));
+      raw = JSON.stringify(demoExtraction(contextText));
     }
     let extraction = extractFirstJson(raw);
     if (!extraction) {
       source = "demo";
-      extraction = demoExtraction(message);
+      extraction = demoExtraction(contextText);
     }
 
     return res.status(200).json({
@@ -242,8 +299,10 @@ export default async function handler(req, res) {
     });
   } catch (e) {
     console.error(e);
-    const message = (typeof req.body === "string" ? JSON.parse(req.body) : req.body)?.message || "";
-    const extraction = demoExtraction(message);
+    const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body || {};
+    const message = body.message || "";
+    const contextText = (body.context || message).trim();
+    const extraction = demoExtraction(contextText);
     return res.status(200).json({
       extraction,
       results: matchExtraction(extraction),

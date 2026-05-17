@@ -25,15 +25,25 @@
   },
   {
     "category": "women",
-    "title_hindi": "महिला अधिकार",
-    "laws": ["Protection of Women from Domestic Violence Act"],
+    "title_hindi": "महिला सुरक्षा और कानूनी अधिकार",
+    "laws": ["Bharatiya Nyaya Sanhita (sexual offences)", "Protection of Women from Domestic Violence Act, 2005"],
     "steps_hindi": [
-      "Women helpline 181 या 1091 पर कॉल करें",
-      "पास की police station से संपर्क",
-      "medical report और सबूत सुरक्षित रखें"
+      "Turant 112 / 100 par call karein agar abhi khatra ho",
+      "Women helpline 181 ya 1091 — 24×7 madad",
+      "Nearest police station par FIR darj karwayein (free legal aid available)",
+      "Government hospital mein medical examination — report FIR ke liye mahatvapurna",
+      "One Stop Centre / District Legal Services (NALSA) se free lawyer"
     ],
     "portal_url": "https://wcd.nic.in",
-    "issues": ["domestic_violence", "dowry_demand", "sexual_harassment_workplace", "divorce_maintenance"]
+    "issues": [
+      "domestic_violence",
+      "dowry_demand",
+      "sexual_harassment_workplace",
+      "sexual_assault",
+      "rape",
+      "molestation",
+      "divorce_maintenance"
+    ]
   },
   {
     "category": "property",

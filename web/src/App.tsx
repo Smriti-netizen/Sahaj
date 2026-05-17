@@ -33,7 +33,7 @@ export default function App() {
     setHistory((h) => [...h, { role: "user", text }]);
 
     try {
-      const data = await sendMessage(text);
+      const data = await sendMessage(text, history);
       setHistory((h) => [
         ...h,
         { role: "bot", text: formatBotReply(data), data },
