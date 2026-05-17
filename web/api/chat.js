@@ -1,4 +1,4 @@
-const HF_MODEL = "unsloth/gemma-4-E2B-it";
+const HF_MODEL = process.env.HF_MODEL || "unsloth/gemma-4-E2B-it";
 const SYSTEM_PROMPT = `You are Sahaj, an AI assistant for Indian citizens.
 Your job: understand the user's input and extract structured information.
 Always respond with valid JSON containing:
@@ -253,9 +253,13 @@ async function callHF(prompt) {
       body: JSON.stringify({
         inputs: prompt,
         parameters: { max_new_tokens: 400, temperature: 0.15, return_full_text: false },
+        options: { wait_for_model: true },
       }),
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      console.error("HF inference failed:", res.status, await res.text().catch(() => ""));
+      return null;
+    }
     const data = await res.json();
     if (Array.isArray(data) && data[0]?.generated_text) return data[0].generated_text;
     if (data?.generated_text) return data.generated_text;

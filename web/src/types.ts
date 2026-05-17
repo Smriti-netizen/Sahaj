@@ -28,8 +28,6 @@ export interface ChatResponse {
   extraction: Record<string, unknown>;
   results: MatchResult;
   source?: "hf" | "demo";
-  model?: string;
-  lora_note?: string;
 }
 
 export interface ChatMessage {
