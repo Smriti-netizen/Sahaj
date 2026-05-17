@@ -1,4 +1,6 @@
-const HF_MODEL = process.env.HF_MODEL || "google/gemma-2-2b-it";
+// Same family you trained on (Gemma 4). Override in Vercel: HF_MODEL=unsloth/gemma-4-E2B-it
+// Note: sahaj-lora is LoRA weights — HF needs full model or Inference Endpoint, not adapter-only repo.
+const HF_MODEL = process.env.HF_MODEL || "unsloth/gemma-4-E2B-it";
 const SYSTEM_PROMPT = `You are Sahaj, an AI assistant for Indian citizens.
 Your job: understand the user's input and extract structured information.
 Always respond with valid JSON containing:
@@ -179,11 +181,22 @@ function demoExtraction(message) {
       },
     };
   }
-  if (m.includes("kisan") || m.includes("farmer") || m.includes("kaam") || m.includes("scheme") || m.includes("startup")) {
+  if (m.includes("blind") || m.includes("andha") || m.includes("disabilit") || m.includes("viklang")) {
+    return {
+      intent: "scheme_discovery",
+      profile: {
+        state: m.includes("assam") ? "Assam" : undefined,
+        looking_for: "health_scheme",
+        disability: "visual_impairment",
+      },
+    };
+  }
+  if (m.includes("kisan") || m.includes("farmer") || m.includes("kaam") || m.includes("scheme") || m.includes("startup") || m.includes("naukri")) {
     return {
       intent: "scheme_discovery",
       profile: {
         occupation: m.includes("farmer") || m.includes("kisan") ? "farmer" : "unemployed",
+        state: m.includes("assam") ? "Assam" : undefined,
         looking_for: m.includes("startup") ? "startup" : "employment",
       },
     };
@@ -195,7 +208,16 @@ async function callHF(userText) {
   const token = process.env.HF_TOKEN?.trim();
   if (!token) return { error: "HF_TOKEN missing on server" };
 
-  const models = [...new Set([HF_MODEL, "google/gemma-2-2b-it"].filter(Boolean))];
+  const models = [
+    ...new Set(
+      [
+        HF_MODEL,
+        "unsloth/gemma-4-E2B-it",
+        "google/gemma-4-e4b-it",
+        "meta-llama/Llama-3.2-3B-Instruct:groq",
+      ].filter(Boolean)
+    ),
+  ];
   let lastErr = "";
 
   for (const model of models) {
