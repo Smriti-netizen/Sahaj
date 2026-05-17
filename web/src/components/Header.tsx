@@ -1,12 +1,11 @@
 export function Header() {
   return (
     <header className="header">
-      <div className="logo-row">
-        <span className="logo">सहज</span>
-        <span className="badge">Gemma 4</span>
-      </div>
-      <p className="tagline">Know your rights. Claim your future.</p>
-      <p className="sub">Schemes & legal aid — Hindi / English</p>
+      <h1 className="logo">sahaj</h1>
+      <p className="objective">
+        India&apos;s citizen assistant — discover government schemes and understand your legal rights.
+        Speak in Hindi or English; we extract your situation and show what may help.
+      </p>
     </header>
   );
 }

@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { sendMessage, formatBotReply } from "./api/client";
 import { ChatMessage as ChatBubble } from "./components/ChatMessage";
+import { Composer } from "./components/Composer";
 import { Header } from "./components/Header";
+import { useSpeech } from "./hooks/useSpeech";
 import type { ChatMessage } from "./types";
 import "./App.css";
 
 const EXAMPLES = [
   { label: "Scheme — farmer UP", text: "Main kisan hoon UP se, 2 acre, BPL card hai" },
   { label: "Legal — consumer", text: "Amazon se order kiya refund nahi mil raha" },
-  { label: "Vague query", text: "bhai kuch kaam nahi mil raha" },
+  { label: "Employment", text: "mujhe kaam dilway do" },
 ];
 
 export default function App() {
@@ -16,6 +18,11 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [history, setHistory] = useState<ChatMessage[]>([]);
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  const { listening, supported, toggle: toggleVoice } = useSpeech((text) => {
+    setInput((prev) => (prev ? `${prev} ${text}` : text));
+  });
 
   async function handleSend() {
     const text = input.trim();
@@ -31,6 +38,7 @@ export default function App() {
         ...h,
         { role: "bot", text: formatBotReply(data), data },
       ]);
+      requestAnimationFrame(() => chatEndRef.current?.scrollIntoView({ behavior: "smooth" }));
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
     } finally {
@@ -58,36 +66,20 @@ export default function App() {
           <ChatBubble key={i} message={msg} />
         ))}
 
-        {loading && <p className="status">Sahaj soch raha hai…</p>}
+        {loading && <p className="status">Sahaj is thinking…</p>}
         {error && <p className="error">{error}</p>}
+        <div ref={chatEndRef} />
       </section>
 
-      <div className="composer">
-        <div className="composer-inner">
-          <textarea
-            rows={2}
-            placeholder="Hindi ya English mein apni situation likhiye…"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                handleSend();
-              }
-            }}
-          />
-          <button type="button" className="send-btn" onClick={handleSend} disabled={loading}>
-            {loading ? "…" : "Bhejein"}
-          </button>
-        </div>
-      </div>
-
-      <p className="footer-note">
-        LoRA:{" "}
-        <a href="https://huggingface.co/smrtnetizen/sahaj-lora" target="_blank" rel="noreferrer">
-          smrtnetizen/sahaj-lora
-        </a>
-      </p>
+      <Composer
+        value={input}
+        loading={loading}
+        listening={listening}
+        voiceSupported={supported}
+        onChange={setInput}
+        onSend={handleSend}
+        onVoice={toggleVoice}
+      />
     </div>
   );
 }
