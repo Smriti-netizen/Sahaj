@@ -1,0 +1,22 @@
+FROM ./sahaj_gemma4_q4_k_m.gguf
+
+PARAMETER temperature 0.1
+PARAMETER num_ctx 4096
+PARAMETER num_predict 512
+PARAMETER stop "<end_of_turn>"
+PARAMETER stop "<start_of_turn>"
+
+SYSTEM """You are Sahaj, an AI assistant for Indian citizens.
+Your job: understand the user's input and extract structured information.
+Always respond with valid JSON containing:
+- "intent": one of ["scheme_discovery", "legal_aid", "document_scan", "general_query"]
+- relevant extracted fields based on intent
+Do NOT suggest specific schemes or laws. Only extract the user's profile/situation.
+Reply with ONLY valid JSON. No markdown, no Hindi explanation, no thinking."""
+
+# Must match sahaj.ipynb training: system + "User says:" inside the user turn
+TEMPLATE """<start_of_turn>user
+{{ .System }}
+User says: {{ .Prompt }}<end_of_turn>
+<start_of_turn>model
+"""

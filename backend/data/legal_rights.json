@@ -1,0 +1,258 @@
+[
+  {
+    "id": "labor",
+    "category": "labor",
+    "category_hindi": "श्रम अधिकार / वेतन",
+    "keywords": ["unpaid_wages", "salary", "wages", "employer", "termination", "harassment", "labour", "labor", "vetan", "malik"],
+    "common_scenarios": [
+      "मालिक कई महीनों से वेतन नहीं दे रहा",
+      "बिना कारण नौकरी से निकाल दिया",
+      "काम पर परेशान करना"
+    ],
+    "relevant_laws": [
+      {
+        "name": "Payment of Wages Act, 1936",
+        "explanation_hindi": "नियोक्ता को तय समय पर पूरा वेतन देना ज़रूरी है। देरी पर जुर्माना और ब्याज लग सकता है।"
+      },
+      {
+        "name": "Industrial Disputes Act",
+        "explanation_hindi": "नौकरी से निकालने या विवाद पर श्रम अदालत / विभाग से राहत मिल सकती है।"
+      }
+    ],
+    "your_rights_hindi": "आपको समय पर वेतन मिलना चाहिए। बिना सही प्रक्रिया के नौकरी से नहीं निकाला जा सकता। शिकायत दर्ज कराने का अधिकार है।",
+    "steps_to_take_hindi": [
+      "मालिक या HR को लिखित ईमेल/पत्र भेजें — कितने महीनों की तनख्वाह बाकी है, कब तक चाहिए, लिखित में लिखें।",
+      "सबूत सुरक्षित रखें — पेस्लिप, बैंक स्टेटमेंट, नियुक्ति पत्र, व्हाट्सऐप संदेश।",
+      "जिला श्रम विभाग / Labour Commissioner के पास शिकायत दर्ज कराएं।",
+      "ज़रूरत हो तो श्रम अदालत या कानूनी सहायता केंद्र से संपर्क करें।"
+    ],
+    "document_templates": ["labor_complaint", "legal_notice"],
+    "portal_url": "https://eshram.gov.in",
+    "helpline_numbers": ["155214 (e-Shram helpline)", "State Labour Department"]
+  },
+  {
+    "id": "consumer",
+    "category": "consumer",
+    "category_hindi": "उपभोक्ता अधिकार",
+    "keywords": ["consumer", "refund", "defective", "amazon", "flipkart", "warranty", "empty box", "product"],
+    "common_scenarios": [
+      "खराब सामान मिला या रिफंड नहीं मिल रहा",
+      "ऑनलाइन ऑर्डर गलत या खाली डिब्बा"
+    ],
+    "relevant_laws": [
+      {
+        "name": "Consumer Protection Act, 2019",
+        "explanation_hindi": "गलत सामान, धोखाधड़ी या सेवा में कमी पर शिकायत और मुआवज़े का अधिकार।"
+      }
+    ],
+    "your_rights_hindi": "आप उपभोक्ता फोरम में शिकायत कर सकते हैं और रिफंड या बदलाव मांग सकते हैं।",
+    "steps_to_take_hindi": [
+      "कंपनी को लिखित शिकायत — ऑर्डर नंबर, बिल, फोटो संलग्न करें।",
+      "15 दिन में जवाब न मिले तो consumerhelpline या जिला फोरम में दर्ज करें।",
+      "सबूत सहेजें — इनवॉइस, चैट, डिलीवरी प्रूफ।"
+    ],
+    "document_templates": ["consumer_complaint"],
+    "portal_url": "https://consumerhelpline.gov.in",
+    "helpline_numbers": ["1800-11-4000 (National Consumer Helpline)"]
+  },
+  {
+    "id": "women",
+    "category": "women",
+    "category_hindi": "महिला अधिकार",
+    "keywords": ["domestic_violence", "dowry", "harassment", "maintenance", "husband", "pati"],
+    "common_scenarios": [
+      "घरेलू हिंसा या दहेज",
+      "परेशानी या धमकी"
+    ],
+    "relevant_laws": [
+      {
+        "name": "Protection of Women from Domestic Violence Act, 2005",
+        "explanation_hindi": "घरेलू हिंसा पर सुरक्षा आदेश और राहत का प्रावधान।"
+      }
+    ],
+    "your_rights_hindi": "आप सुरक्षा, राहत और पुलिस/महिला हेल्पलाइन से तुरंत मदद ले सकती हैं।",
+    "steps_to_take_hindi": [
+      "खतरे में हों तो 112 या महिला हेल्पलाइन 181 पर कॉल करें।",
+      "नज़दीकी महिला थाना / संरक्षण अधिकारी से संपर्क करें।",
+      "चिकित्सा रिपोर्ट और सबूत इकट्ठा करें।"
+    ],
+    "document_templates": ["fir_draft", "protection_order"],
+    "portal_url": "",
+    "helpline_numbers": ["181 (Women Helpline)", "112 (Emergency)"]
+  },
+  {
+    "id": "property",
+    "category": "property",
+    "category_hindi": "ज़मीन / संपत्ति",
+    "keywords": ["landlord", "tenant", "encroachment", "kabza", "zameen", "lease", "rent", "property"],
+    "common_scenarios": [
+      "ज़मीन पर कब्जा",
+      "मकान मालिक बिना नोटिस खाली करवाना चाहता है"
+    ],
+    "relevant_laws": [
+      {
+        "name": "Transfer of Property Act / State Rent Laws",
+        "explanation_hindi": "कब्ज़ा या बेदखली के खिलाफ कानूनी नोटिस और अदालत से राहत संभव।"
+      }
+    ],
+    "your_rights_hindi": "वैध किरायेदारी या मालिकाना हक के तहत बेदखली की सही प्रक्रिया होनी चाहिए।",
+    "steps_to_take_hindi": [
+      "किरायानामा / खसरा / संबंधित कागज़ इकट्ठा करें।",
+      "वकील या विधिक सेवा से नोटिस का जवाब तैयार करें।",
+      "तहसील / पुलिस / न्यायालय में उपयुक्त शिकायत दर्ज कराएं।"
+    ],
+    "document_templates": ["legal_notice", "police_complaint"],
+    "portal_url": "",
+    "helpline_numbers": []
+  },
+  {
+    "id": "rti",
+    "category": "rti",
+    "category_hindi": "सूचना का अधिकार (RTI)",
+    "keywords": ["rti", "information", "department", "bijli", "vibhag", "soochana"],
+    "common_scenarios": [
+      "विभाग से जानकारी नहीं मिल रही",
+      "बिजली / पानी / सरकारी कार्यालय से जवाब नहीं"
+    ],
+    "relevant_laws": [
+      {
+        "name": "RTI Act, 2005",
+        "explanation_hindi": "सरकारी विभाग से 30 दिन में जानकारी मांगने का अधिकार; ₹10 शुल्क लग सकता है।"
+      }
+    ],
+    "your_rights_hindi": "आप लिखित RTI आवेदन दे सकते हैं; समय पर जवाब न मिले तो अपील कर सकते हैं।",
+    "steps_to_take_hindi": [
+      "सही विभाग और पता पता करें।",
+      "RTI आवेदन में स्पष्ट सवाल और समयावधि लिखें।",
+      "रसीद और कॉपी सुरक्षित रखें; ऑनलाइन rtionline.gov.in पर भी दाखिल कर सकते हैं।"
+    ],
+    "document_templates": ["rti_application"],
+    "portal_url": "https://rtionline.gov.in",
+    "helpline_numbers": []
+  },
+  {
+    "id": "police",
+    "category": "police",
+    "category_hindi": "पुलिस / FIR",
+    "keywords": ["fir", "police", "theft", "threat", "complaint", "zero fir"],
+    "common_scenarios": [
+      "FIR दर्ज नहीं हो रही",
+      "धमकी या चोरी की रिपोर्ट"
+    ],
+    "relevant_laws": [
+      {
+        "name": "CrPC Section 154",
+        "explanation_hindi": "संज्ञेय अपराध पर थाना FIR दर्ज करे; मना करे तो वरिष्ठ अधिकारी या न्यायालय से राहत।"
+      }
+    ],
+    "your_rights_hindi": "आपको FIR दर्ज कराने का अधिकार है; Zero FIR किसी भी थाने पर दर्ज हो सकती है।",
+    "steps_to_take_hindi": [
+      "घटना की तारीख, समय, जगह और गवाह लिखकर थाने जाएं।",
+      "FIR की कॉपी और DDR नंबर लें।",
+      "मना हो तो SP/DCP को लिखित शिकायत दें।"
+    ],
+    "document_templates": ["fir_draft"],
+    "portal_url": "",
+    "helpline_numbers": ["112"]
+  },
+  {
+    "id": "pension",
+    "category": "pension",
+    "category_hindi": "पेंशन / सेवानिवृत्ति",
+    "keywords": ["pension", "life certificate", "jeevan pramaan", "retired"],
+    "common_scenarios": [
+      "पेंशन देर से आती है",
+      "लाइफ सर्टिफिकेट की समस्या"
+    ],
+    "relevant_laws": [
+      {
+        "name": "Pension Rules / Jeevan Pramaan",
+        "explanation_hindi": "पेंशनभोगी को नियमित भुगतान और डिजिटल जीवन प्रमाणपत्र की सुविधा।"
+      }
+    ],
+    "your_rights_hindi": "देरी पर विभाग से लिखित जवाब और PG Portal पर शिकायत का अधिकार।",
+    "steps_to_take_hindi": [
+      "पेंशन खाता और पिछले भुगतान की जाँच करें।",
+      "Jeevan Pramaan या बैंक से लाइफ सर्टिफिकेट अपडेट करें।",
+      "pgportal.gov.in पर शिकायत दर्ज करें।"
+    ],
+    "document_templates": ["grievance_application"],
+    "portal_url": "https://pgportal.gov.in",
+    "helpline_numbers": []
+  },
+  {
+    "id": "education",
+    "category": "education",
+    "category_hindi": "शिक्षा अधिकार",
+    "keywords": ["scholarship", "rte", "school", "admission", "education"],
+    "common_scenarios": [
+      "छात्रवृत्ति नहीं मिली",
+      "RTE में दाखिला नहीं"
+    ],
+    "relevant_laws": [
+      {
+        "name": "Right to Education Act, 2009",
+        "explanation_hindi": "6–14 वर्ष के बच्चों को निःशुल्क शिक्षा का अधिकार।"
+      }
+    ],
+    "your_rights_hindi": "योग्यता पूरी होने पर छात्रवृत्ति या RTE दाखिले की माँग कर सकते हैं।",
+    "steps_to_take_hindi": [
+      "स्कूल / जिला शिक्षा अधिकारी को लिखित आवेदन दें।",
+      "सभी दस्तावेज़ और मना करने का कारण लिखित में माँगें।",
+      "ऊपर के स्तर पर अपील करें।"
+    ],
+    "document_templates": ["scholarship_grievance", "rte_application"],
+    "portal_url": "https://scholarships.gov.in",
+    "helpline_numbers": []
+  },
+  {
+    "id": "health",
+    "category": "health",
+    "category_hindi": "स्वास्थ्य अधिकार",
+    "keywords": ["hospital", "medical", "negligence", "insurance", "ayushman"],
+    "common_scenarios": [
+      "अस्पताल की लापरवाही",
+      "बीमा कंपनी ने दावा मना किया"
+    ],
+    "relevant_laws": [
+      {
+        "name": "Clinical Establishments Act / Insurance Rules",
+        "explanation_hindi": "गलत इलाज या बीमा अस्वीकार पर शिकायत और मुआवज़े की राहत।"
+      }
+    ],
+    "your_rights_hindi": "मेडिकल रिकॉर्ड और शिकायत दर्ज कराने का अधिकार; Ayushman परिवार को कवरेज का हक।",
+    "steps_to_take_hindi": [
+      "सभी बिल, रिपोर्ट, प्रिस्क्रिप्शन सुरक्षित रखें।",
+      "अस्पताल प्रशासन / जिला स्वास्थ्य अधिकारी को लिखित शिकायत।",
+      "बीमा हो तो ग्रीवांस सेल और IRDAI पोर्टल का उपयोग करें।"
+    ],
+    "document_templates": ["medical_complaint"],
+    "portal_url": "https://pmjay.gov.in",
+    "helpline_numbers": ["14555 (Ayushman Bharat)"]
+  },
+  {
+    "id": "cyber",
+    "category": "cyber",
+    "category_hindi": "साइबर अपराध",
+    "keywords": ["cyber", "fraud", "upi", "scam", "identity theft", "loan", "phishing"],
+    "common_scenarios": [
+      "UPI धोखाधड़ी",
+      "नाम पर जाली लोन"
+    ],
+    "relevant_laws": [
+      {
+        "name": "IT Act / Cyber Crime Portal",
+        "explanation_hindi": "ऑनलाइन धोखाधड़ी की शिकायत राष्ट्रीय पोर्टल पर दर्ज की जा सकती है।"
+      }
+    ],
+    "your_rights_hindi": "तुरंत बैंक और 1930 (cyber financial helpline) पर रिपोर्ट करने का अधिकार।",
+    "steps_to_take_hindi": [
+      "संबंधित लेनदेन रोकने के लिए तुरंत बैंक को कॉल करें।",
+      "cybercrime.gov.in पर शिकायत दर्ज करें।",
+      "स्क्रीनशॉट, नंबर, समय सहेजें।"
+    ],
+    "document_templates": ["cyber_complaint"],
+    "portal_url": "https://cybercrime.gov.in",
+    "helpline_numbers": ["1930 (Cyber Financial Fraud)", "112"]
+  }
+]

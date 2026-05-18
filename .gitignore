@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Ollama / model weights (large; keep locally)
+models/*.gguf
+models/*.zip
+
+# Test / temp outputs
+models/*_out.json
+*.log
+
+# IDE
+.idea/
+.vscode/
+
+# Node / frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local-only (not for GitHub / demo video repo)
+SAHAJ_PLAN.md
+sahaj.ipynb
+sahaj_finetune.ipynb
+.ipynb_checkpoints/
+
+# OneDrive nested junction — do not track
+SahajGemmaHackathon/

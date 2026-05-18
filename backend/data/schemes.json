@@ -1,0 +1,161 @@
+[
+  {
+    "id": "pm_kisan",
+    "name": "PM-KISAN",
+    "name_hindi": "प्रधानमंत्री किसान सम्मान निधि",
+    "description_hindi": "छोटे और सीमांत किसानों को साल में तीन किस्तों में सहायता।",
+    "eligibility": {
+      "occupations": ["farmer"],
+      "max_land_acres": 2,
+      "excludes": ["income_tax_payer", "institutional_land"]
+    },
+    "benefit_amount": 6000,
+    "benefit_period": "year",
+    "required_documents": ["Aadhaar", "bank passbook", "land records"],
+    "portal_url": "https://pmkisan.gov.in",
+    "steps_hindi": [
+      "pmkisan.gov.in par jaayein ya CSC par jaayein",
+      "Aadhaar aur bank khata se registration karein",
+      "e-KYC complete karein"
+    ]
+  },
+  {
+    "id": "pmfby",
+    "name": "PM Fasal Bima Yojana",
+    "name_hindi": "प्रधानमंत्री फसल बीमा योजना",
+    "description_hindi": "फसल नुकसान पर बीमा कवर — कम प्रीमियम पर।",
+    "eligibility": {
+      "occupations": ["farmer"],
+      "min_land_acres": 0.1
+    },
+    "benefit_amount": 0,
+    "benefit_note_hindi": "फसल नुकसान पर बीमा राशि (हालत पर निर्भर)",
+    "benefit_period": "year",
+    "required_documents": ["Aadhaar", "land record", "sowing certificate"],
+    "portal_url": "https://pmfby.gov.in",
+    "steps_hindi": ["pmfby.gov.in par season ke dauraan apply karein", "bank ya CSC se premium jama karein"]
+  },
+  {
+    "id": "kcc",
+    "name": "Kisan Credit Card",
+    "name_hindi": "किसान क्रेडिट कार्ड",
+    "description_hindi": "खेती के लिए सस्ता ऋण — बैंक से KCC।",
+    "eligibility": {
+      "occupations": ["farmer", "fisherman"]
+    },
+    "benefit_amount": 0,
+    "benefit_note_hindi": "सब्सिडी वाला कृषि ऋण सीमा तक",
+    "benefit_period": "year",
+    "required_documents": ["Aadhaar", "land papers", "photo"],
+    "portal_url": "https://www.india.gov.in/kisan-credit-card-kcc",
+    "steps_hindi": ["Apne bank/shakha mein KCC form bharein", "Zameen ya machhua praman jama karein"]
+  },
+  {
+    "id": "pm_ujjwala",
+    "name": "PM Ujjwala Yojana",
+    "name_hindi": "प्रधानमंत्री उज्ज्वला योजना",
+    "description_hindi": "BPL parivar ko muft LPG connection.",
+    "eligibility": {
+      "income_categories": ["BPL"],
+      "gender": ["female"]
+    },
+    "benefit_amount": 0,
+    "benefit_note_hindi": "मुफ्त गैस कनेक्शन और पहला सिलिंडर सहायता",
+    "benefit_period": "once",
+    "required_documents": ["BPL card", "Aadhaar", "bank account"],
+    "portal_url": "https://www.pmuy.gov.in",
+    "steps_hindi": ["Gas agency ya CSC par Ujjwala form", "BPL aur Aadhaar dikhayein"]
+  },
+  {
+    "id": "sukanya_samriddhi",
+    "name": "Sukanya Samriddhi Yojana",
+    "name_hindi": "सुकन्या समृद्धि योजना",
+    "description_hindi": "Beti ke naam par bachat khata — achhi byaaj.",
+    "eligibility": {
+      "requires_minor_daughter": true,
+      "max_daughter_age": 10
+    },
+    "benefit_amount": 0,
+    "benefit_note_hindi": "टैक्स बेनिफिट + हाई इंटरेस्ट (निवेश सीमा तक)",
+    "benefit_period": "year",
+    "required_documents": ["beti ka janm praman", "Aadhaar", "parents ID"],
+    "portal_url": "https://www.india.gov.in/sukanya-samriddhi-yojana-ssy",
+    "steps_hindi": ["Post office ya bank mein SSY kholein", "Beti 10 saal se kam honi chahiye"]
+  },
+  {
+    "id": "pm_jan_dhan",
+    "name": "PM Jan Dhan Yojana",
+    "name_hindi": "प्रधानमंत्री जन धन योजना",
+    "description_hindi": "Zero balance bank khata — sabke liye.",
+    "eligibility": {
+      "has_bank_account": false
+    },
+    "benefit_amount": 0,
+    "benefit_note_hindi": "बिना शुल्क खाता + RuPay card + accident insurance",
+    "benefit_period": "once",
+    "required_documents": ["Aadhaar", "photo"],
+    "portal_url": "https://pmjdy.gov.in",
+    "steps_hindi": ["Kisi bhi bank branch ya CSP par jaayein", "Jan Dhan form bharein"]
+  },
+  {
+    "id": "ayushman_bharat",
+    "name": "Ayushman Bharat",
+    "name_hindi": "आयुष्मान भारत",
+    "description_hindi": "Garib parivar ke liye muft ilaj — 5 lakh tak cover.",
+    "eligibility": {
+      "income_categories": ["BPL", "LIG"],
+      "schemes": ["SECC listed family"]
+    },
+    "benefit_amount": 500000,
+    "benefit_period": "year",
+    "required_documents": ["Aadhaar", "ration card / SECC"],
+    "portal_url": "https://pmjay.gov.in",
+    "steps_hindi": ["pmjay.gov.in par parivar check karein", "Ayushman card banwayein hospital/CSC se"]
+  },
+  {
+    "id": "mgnrega",
+    "name": "MGNREGA",
+    "name_hindi": "मनरेगा (MGNREGA)",
+    "description_hindi": "Gramin ilake mein 100 din kaam ka hak.",
+    "eligibility": {
+      "area": ["rural"],
+      "min_age": 18
+    },
+    "benefit_amount": 0,
+    "benefit_note_hindi": "लगभग 100 दिन गारंटीड मजदूरी (मजदूरी दर राज्य अनुसार)",
+    "benefit_period": "year",
+    "required_documents": ["Aadhaar", "job card application", "photo"],
+    "portal_url": "https://nrega.nic.in",
+    "steps_hindi": ["Gram panchayat mein job card ke liye apply", "Kaam maangein jab zarurat ho"]
+  },
+  {
+    "id": "pm_svanidhi",
+    "name": "PM SVANidhi",
+    "name_hindi": "पीएम स्वनिधि",
+    "description_hindi": "Street vendor ke liye chhota loan aur digital payment bonus.",
+    "eligibility": {
+      "occupations": ["street_vendor"]
+    },
+    "benefit_amount": 10000,
+    "benefit_period": "loan",
+    "required_documents": ["vendor certificate", "Aadhaar", "bank account"],
+    "portal_url": "https://pmsvanidhi.mohua.gov.in",
+    "steps_hindi": ["Urban local body / CSC se SVANidhi apply", "Vendor ID card banwayein"]
+  },
+  {
+    "id": "nsp_scholarship",
+    "name": "National Scholarship Portal",
+    "name_hindi": "राष्ट्रीय छात्रवृत्ति पोर्टल",
+    "description_hindi": "Padhai ke liye scholarship — SC/ST/OBC/General schemes.",
+    "eligibility": {
+      "occupations": ["student"],
+      "looking_for": ["scholarship"]
+    },
+    "benefit_amount": 0,
+    "benefit_note_hindi": "योजना अनुसार हजारों से लाखों तक scholarship",
+    "benefit_period": "year",
+    "required_documents": ["Aadhaar", "income certificate", "marksheet", "bank account"],
+    "portal_url": "https://scholarships.gov.in",
+    "steps_hindi": ["scholarships.gov.in par register", "Apni category ki scheme choose karein"]
+  }
+]
